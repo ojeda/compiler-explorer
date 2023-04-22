@@ -1,0 +1,27 @@
+From 8a111696270d71f28b73d9ab0e99529bd364aa33 Mon Sep 17 00:00:00 2001
+From: Miguel Ojeda <ojeda@kernel.org>
+Date: Sat, 22 Apr 2023 21:42:08 +0200
+Subject: [PATCH] rust: hardcode `RUST_MODFILE` for Compiler Explorer
+
+Signed-off-by: Miguel Ojeda <ojeda@kernel.org>
+---
+ rust/macros/module.rs | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/rust/macros/module.rs b/rust/macros/module.rs
+index a7e363c2b044..84f71cb34e3c 100644
+--- a/rust/macros/module.rs
++++ b/rust/macros/module.rs
+@@ -168,8 +168,7 @@ pub(crate) fn module(ts: TokenStream) -> TokenStream {
+     }
+ 
+     // Built-in modules also export the `file` modinfo string.
+-    let file =
+-        std::env::var("RUST_MODFILE").expect("Unable to fetch RUST_MODFILE environmental variable");
++    let file = "example";
+     modinfo.emit_only_builtin("file", &file);
+ 
+     format!(
+-- 
+2.40.0
+
